@@ -1,11 +1,13 @@
 ul {
   list-style-type: none;
 }
+body {
+  padding: 24px 156px;
+}
 .gallery {
   display: flex;
   flex-wrap: wrap;
   height: 696px;
-  padding: 24px 156px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
