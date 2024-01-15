@@ -89,8 +89,8 @@ function render() {
 }
 render();
 
-//Prevent downloading images
 const imageLinks = document.querySelectorAll('.gallery-link');
+//Prevent downloading images
 
 container.addEventListener('click', e => {
   e.preventDefault();
@@ -98,11 +98,19 @@ container.addEventListener('click', e => {
 
   const instance = basicLightbox.create(
     `<img src="${e.target.dataset.source}" width="800" height="600">`,
+    {
+      onShow: instance => {
+        window.addEventListener('keydown', closeModal);
+      },
+      onClose: instance => {
+        window.removeEventListener('keydown', closeModal);
+      },
+    },
   );
 
-  instance.show();
-
-  document.addEventListener('keydown', e => {
+  function closeModal(e) {
     if (e.code === 'Escape') instance.close();
-  });
+  }
+
+  instance.show();
 });
